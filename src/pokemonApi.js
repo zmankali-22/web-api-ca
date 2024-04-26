@@ -5,18 +5,19 @@ async function getPokemonData() {
   let fullApiUrl = pokemonApiUrlBase + randomPokemonNumber;
 
   let response = await fetch(fullApiUrl);
-  return response;
+  let jsonData = await response.json();
+  return jsonData;
 }
 
-function putDataOnPage() {}
+function putDataOnPage(dataToDisplay) {
+    document.getElementsByClassName("pokemonName")[0].textContent = dataToDisplay.name
+}
 
 // Button calls this
 async  function getAndDisplayPokemonData() {
   let data = await getPokemonData();
-  let jsonData = await data.json();
-  console.log(jsonData);
-  getPokemonData();
-  putDataOnPage();
+    console.log(data);
+  putDataOnPage(data);
 }
 
 document
